@@ -18,3 +18,24 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+/*
+new Vue({
+    el: ".vue",
+    data() {
+        return {
+            reviews: [
+                {label: 'test', field: 'id'},
+                {label: 'user_id', field: 'user_id', headerClass: 'class-in-header second-class'},
+                {label: 'title', field: 'title'},
+                {label: 'body', field: 'body'},
+            ],
+            commentsToShow: 10,
+            totalComments: 0
+        };
+    },
+    mounted() {
+        this.totalComments = this.reviews.length
+        console.log(this.reviews.length)
+    }
+})
+*/
