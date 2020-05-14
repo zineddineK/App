@@ -13,8 +13,8 @@ export default new Router({
       component: Listing
     },
     {
-      path: '/detail',
-      name: 'Details',
+      path: '/detail/:id',
+      name: 'detail',
       component: Details
     }
 

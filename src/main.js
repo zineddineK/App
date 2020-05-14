@@ -10,6 +10,26 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 Vue.config.productionTip = false
 
 Vue.use(VuejsDatatableFactory)
+VuejsDatatableFactory.useDefaultType(false).registerTableType('datatable', tableType => tableType.mergeSettings({
+  table: {
+    class: 'table table-hover table-striped',
+    sorting: {
+      sortAsc: '<i class="fas fa-sort-amount-up" title="Sort ascending"></i>',
+      sortDesc: '<i class="fas fa-sort-amount-down" title="Sort descending"></i>',
+      sortNone: '<i class="fas fa-sort" title="Sort"></i>'
+    }
+  },
+  pager: {
+    classes: {
+      pager: 'pagination text-center',
+      selected: 'active'
+    },
+    icons: {
+      next: '<i class="fas fa-chevron-right" title="Next page"></i>',
+      previous: '<i class="fas fa-chevron-left" title="Previous page"></i>'
+    }
+  }
+}))
 
 /* eslint-disable no-new */
 new Vue({
@@ -18,24 +38,3 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
-/*
-new Vue({
-    el: ".vue",
-    data() {
-        return {
-            reviews: [
-                {label: 'test', field: 'id'},
-                {label: 'user_id', field: 'user_id', headerClass: 'class-in-header second-class'},
-                {label: 'title', field: 'title'},
-                {label: 'body', field: 'body'},
-            ],
-            commentsToShow: 10,
-            totalComments: 0
-        };
-    },
-    mounted() {
-        this.totalComments = this.reviews.length
-        console.log(this.reviews.length)
-    }
-})
-*/

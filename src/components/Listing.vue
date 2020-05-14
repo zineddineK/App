@@ -2,18 +2,17 @@
   <div id="app">
     <div class="container">
       <h1 class>Listing</h1>
+        <div class="row table-responsive">
+            <div class="col-xs-12 form-inline">
+                <div class="form-group">
+                    <label for="filter" class="sr-only">Filter</label>
+                    <input type="text" class="form-control" v-model="filter" placeholder="Filter" @keydown="$event.stopImmediatePropagation()">
+                </div>
+            </div>
+            <datatable :columns="columns" :data="rows" :filter="filter" :per-page="5"></datatable>
+            <datatable-pager v-model="page"></datatable-pager>
+        </div>
 
-      <!-- <div v-if="commentIndex < reviews.length" v-for="commentIndex in commentsToShow" >
-               <div>{{reviews[commentIndex].name}} says:</div>
-               <i><div>{{reviews[commentIndex].description}}</div></i>
-               <hr />
-             </div>
-             <div v-if="commentsToShow < reviews.length || reviews.length > commentsToShow">
-               <button @click="commentsToShow += 10">show more reviews</button>
-             </div>
-      -->
-
-      <datatable :columns="columns" :data="rows"></datatable>
     </div>
   </div>
 </template>
@@ -22,9 +21,11 @@
 import axios from 'axios'
 export default {
   name: 'Listing',
-  components: {},
+  components: {
+  },
   data () {
     return {
+      filter: '',
       columns: [
         { label: 'test', field: 'id' },
         {
@@ -32,10 +33,12 @@ export default {
           field: 'user_id',
           headerClass: 'class-in-header second-class'
         },
-        { label: 'title', field: 'title' },
+        { label: 'title', field: 'title', representedAs: row => `<a href='/#/detail/${row.id}'>${row.title}</a>`, interpolate: true
+        },
         { label: 'body', field: 'body' }
       ],
-      rows: []
+      rows: [],
+      page: 1
     }
   },
   methods: {
